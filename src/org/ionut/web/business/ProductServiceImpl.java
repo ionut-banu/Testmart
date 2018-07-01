@@ -3,6 +3,8 @@ package org.ionut.web.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.ionut.web.model.Product;
+
 public class ProductServiceImpl {
 	
 	List<String> bookList = new ArrayList<>();
@@ -42,5 +44,30 @@ public class ProductServiceImpl {
 			return movieList;
 		}
 		return null;
+	}
+	
+	public boolean addProduct(String category, String product) {
+		switch(category.toLowerCase()) {
+		case "books":
+			bookList.add(product);
+			break;
+		case "music":
+			musicList.add(product);
+			break;
+		case "movies":
+			movieList.add(product);
+			break;
+		default:
+			return false;
+		
+		}
+		return true;
+	}
+	
+	public List<Product> getProductsV2(String category){
+		List<Product> productList = new ArrayList<>();
+		productList.add(new Product("Java Book", "1234", 99999.99));
+		productList.add(new Product("Another Book", "ABC", 99999.99));
+		return productList;
 	}
 }
